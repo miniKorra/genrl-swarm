@@ -1,3 +1,4 @@
+import sys
 import abc
 from enum import Enum
 from typing import Any, List, Tuple, Dict, Callable
@@ -143,6 +144,7 @@ class GameManager(abc.ABC): #TODO: Make this use enum
                 self.run_game_round() # Loops through stages until end of round signal is received
         except:
             get_logger().exception("Exception occurred during game run.", stack_info=True)
+            sys.exit(-1)
         finally:
             self._hook_after_game()
             self.trainer.cleanup()
