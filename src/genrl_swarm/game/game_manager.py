@@ -421,7 +421,7 @@ class SwarmGameManager(BaseGameManager, DefaultGameManagerMixin):
                 get_logger().info(
                     f"🐝 Joining round: {round_num}"
                 )
-                check_backoff = check_interval  # Reset backoff after successful round
+                check_backoff = 5 #check_interval  # Reset backoff after successful round
                 self.state.round = round_num # advance to swarm's round.
                 return
             else:
@@ -429,7 +429,7 @@ class SwarmGameManager(BaseGameManager, DefaultGameManagerMixin):
                     f"Already finished round: {round_num}. Next check in {check_backoff}s."
                 )
                 time.sleep(check_backoff)
-                check_backoff = min(check_backoff * 2, max_check_interval)
+                check_backoff = 5 #min(check_backoff * 2, max_check_interval)
 
             if round_num == self.max_round - 1:
                 return
